@@ -1,6 +1,6 @@
 <?php
 ###############################################################################
-#                  Narga's Guestbook v.1.0 for Xoops 2.x                      #
+#                  Narga's Guestbook v.2.0 for Xoops 2.x                      #
 #             Writen by  Nguyen Dinh Quan (webmaster@narga.tk)                #
 #      .: Narga Vault :-: The Land Of Dreams :.(http://www.narga.tk)          #
 #   ------------------------------------------------------------------------- #
@@ -21,7 +21,7 @@
 #   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA  #
 #   ------------------------------------------------------------------------  #
 ###############################################################################
-// $Id: main.php,v 1.2 Date: 22/06/2003, Author: Nguyen Dinh Quan Exp 
+// $Id: main.php,v 2.0 Date: 05/12/2011, Author: Nguyen Dinh Quan Exp 
 //%%%%%%		File Name 		%%%%%
 define("_NAR_NAMEMODULE","Narga's Guestbook");
 define("_NAR_SIGNGUESTBOOK","Sign in our guestbook");
@@ -35,6 +35,11 @@ define("_NAR_URL","Website");
 define("_NAR_TITLE","Title");
 define("_NAR_MESSAGE","Message*");
 define("_NAR_SEND","Sign my message");
+
+//add facebook and twitter
+define("_NAR_FACEBOOK","FACEBOOK");
+define("_NAR_TWITTER","TWITTER");
+
 define("_NAR_ICQ","ICQ");
 define("_NAR_MSN","MSN");
 define("_NAR_YIM","YIM");
@@ -46,7 +51,7 @@ define("_NAR_OTHER","Other");
 define("_NAR_GENDER","Gender");
 define("_NAR_DELETEPOST","Delete");
 define("_NAR_THEREIS","We have %s message from the begin.");
-define("_NAR_COPYRIGHT","Powered by Narga's Guestbook 1.4 - © 2002-2004 <a href='http://www.narga.tk' target='blank'>[:: Narga Vault ::]</a>.");
+define("_NAR_COPYRIGHT","Powered by Narga's Guestbook 2.0 - © 2011 <a href='http://www.narga.tk' target='blank'>[:: Narga Vault ::]</a>.");
 define("_NAR_MODIFSAVE","Modifications saved");
 define("_NAR_PREVIEW","Preview");
 define("_NAR_EDIT","Edit");

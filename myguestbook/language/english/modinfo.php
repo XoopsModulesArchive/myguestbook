@@ -1,6 +1,6 @@
 <?php
 ###############################################################################
-#                  Narga's Guestbook v.1.0 for Xoops 2.x                      #
+#                  Narga's Guestbook v.2.0 for Xoops 2.x                      #
 #             Writen by  Nguyen Dinh Quan (webmaster@narga.tk)                #
 #      .: Narga Vault :-: The Land Of Dreams :.(http://www.narga.tk)          #
 #   ------------------------------------------------------------------------- #
@@ -21,7 +21,7 @@
 #   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA  #
 #   ------------------------------------------------------------------------  #
 ###############################################################################
-// $Id: modinfo.php,v 1.2 Date: 22/06/2003, Author: Nguyen Dinh Quan Exp // Module Info
+// $Id: modinfo.php,v 2.0 Date: 05/12/2011, Author: Nguyen Dinh Quan Exp // Module Info
 //Menu title
 define("_MI_NAR_GUESTBOOK_ADMIN","Manage messages");
 define("_MI_NAR_GUESTBOOK_CONFIG","Narga's Guestbook module");
@@ -45,4 +45,9 @@ define('_MI_NAR_TIME2', 'd-m-Y');
 //define("_MI_NAR_AIM","AIM");
 //define("_MI_NAR_GENDER","Gender");
 //define("_MI_NAR_EMAIL","Email");
-?>
+
+
+define("_MI_NAR_GUESTBOOK_ADMIN0","Home");
+define("_MI_NAR_GUESTBOOK_ABOUT","About");
+
+define("_MI_MYGUESTBOOK_BNAME1","Recent Entries");

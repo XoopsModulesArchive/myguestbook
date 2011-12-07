@@ -1,4 +1,4 @@
-NARGA'S GUESTBOOK MODULES FOR XOOPS PORTAL 2.X
+Narga's Guestbook MODULES FOR XOOPS PORTAL 2.X
 ==============================================
 
 *********************************** IMPORTANT NOTES *****************************************

@@ -1,6 +1,6 @@
 <?php
 ###############################################################################
-#                  Narga's Guestbook v.1.0 for Xoops 2.x                      #
+#                  Narga's Guestbook v.2.0 for Xoops 2.x                      #
 #             Writen by  Nguyen Dinh Quan (webmaster@narga.tk)                #
 #      .: Narga Vault :-: The Land Of Dreams :.(http://www.narga.tk)          #
 #   ------------------------------------------------------------------------- #
@@ -21,8 +21,8 @@
 #   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA  #
 #   ------------------------------------------------------------------------  #
 ###############################################################################
-// $Id: functions.php,v 1.2 Date: 22/06/2003, Author: Nguyen Dinh Quan Exp $
-include_once XOOPS_ROOT_PATH."/class/xoopsobject.php";
+// $Id: functions.php,v 2.0 Date: 05/12/2011, Author: Nguyen Dinh Quan Exp $
+include_once XOOPS_ROOT_PATH."/kernel/object.php";
 
 class MyGuestbookSystem extends XoopsObject
 {
@@ -31,7 +31,7 @@ class MyGuestbookSystem extends XoopsObject
     // constructor
 	function MyGuestbookSystem($id=null)
 	{
-		$this->db =& Database::getInstance();
+		$this->db =& XoopsDatabaseFactory::getDatabaseConnection();
 		$this->initVar("id", XOBJ_DTYPE_INT, null, false);
 		$this->initVar("name", XOBJ_DTYPE_TXTBOX, null, true);
 		$this->initVar("title", XOBJ_DTYPE_TXTBOX, null, true);
@@ -42,10 +42,14 @@ class MyGuestbookSystem extends XoopsObject
 		$this->initVar("url", XOBJ_DTYPE_URL, null, true);
 		$this->initVar("ip", XOBJ_DTYPE_TXTBOX, null, true);
 		$this->initVar("gender", XOBJ_DTYPE_INT, null, true, 1);
-		$this->initVar("icq", XOBJ_DTYPE_INT, null, true, 15);
-		$this->initVar("yim", XOBJ_DTYPE_TXTBOX, null, true);
-		$this->initVar("aim", XOBJ_DTYPE_TXTBOX, null, true);
-		$this->initVar("msn", XOBJ_DTYPE_TXTBOX, null, true);
+
+		$this->initVar("facebook", XOBJ_DTYPE_INT, null, true, 100);
+		$this->initVar("twitter", XOBJ_DTYPE_INT, null, true, 100);
+
+		$this->initVar("icq", XOBJ_DTYPE_INT, null, true, 100);
+		$this->initVar("yim", XOBJ_DTYPE_TXTBOX, null, true,100);
+		$this->initVar("aim", XOBJ_DTYPE_TXTBOX, null, true,100);
+		$this->initVar("msn", XOBJ_DTYPE_TXTBOX, null, true,100);
 		$this->initVar("location", XOBJ_DTYPE_TXTBOX, null, true);
 		$this->initVar("company", XOBJ_DTYPE_TXTBOX, null, true);
 		if ( !empty($id) ) {
@@ -105,7 +109,7 @@ function genderMySelBox($title,$order="",$preset_id=0, $none=0, $sel_name="", $o
 	
 	function getAllMessages($criteria=array(), $asobject=false, $limit=0, $start=0, $order="")
 	{
-		$db =& Database::getInstance();
+		$db =& XoopsDatabaseFactory::getDatabaseConnection();
 		$ret = array();
 		$where_query = "";
 		if ( is_array($criteria) && count($criteria) > 0 ) {
