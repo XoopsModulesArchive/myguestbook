@@ -1,10 +1,10 @@
 <?php
 ###############################################################################
-#                  Narga's Guestbook v.1.0 for Xoops 2.x                      #
+#                  Narga's Guestbook v.2.0 for Xoops 2.x       #
 #             Writen by  Nguyen Dinh Quan (webmaster@narga.tk)                #
 #      :: Narga Vault :-: The Land Of Dreams ::(http://www.narga.tk)          #
 #   ------------------------------------------------------------------------- #
-#       A produce of [:: Narga Laboratory ::] (http://www.nargalab.info)      #
+#       A produce of [:: International Prayer ::] (http://www.narga.tk)      #
 #   ------------------------------------------------------------------------- #
 #   This program is free software; you can redistribute it and/or modify      #
 #   it under the terms of the GNU General Public License as published by      #
@@ -21,9 +21,9 @@
 #   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA  #
 #   ------------------------------------------------------------------------  #
 ###############################################################################
-// $Id: sign.php,v 1.2.1 Date: 8/30/2004 10:37 PM, Author: Nguyen Dinh Quan Exp $
+// $Id: sign.php,v 2.0.1 Date: 8/30/2004 10:37 PM, Author: Nguyen Dinh Quan Exp $
 include_once "header.php";
-if ( empty($HTTP_POST_VARS['submit']) ) {
+if ( empty($_POST['submit']) ) {
 	$xoopsOption['template_main'] = 'myguestbook_sign.html';
 	include XOOPS_ROOT_PATH."/header.php";
 	include_once XOOPS_ROOT_PATH."/class/xoopsformloader.php";
@@ -32,6 +32,8 @@ if ( empty($HTTP_POST_VARS['submit']) ) {
 	$name_v = !empty($xoopsUser) ? $xoopsUser->getVar("uname", "E") : "";
 	$email_v = !empty($xoopsUser) ? $xoopsUser->getVar("email", "E") : "";
 	$url_v = !empty($xoopsUser) ? $xoopsUser->getVar("url", "E") : "";
+	$facebook_v = !empty($xoopsUser) ? $xoopsUser->getVar("user_facebook", "E") : "";
+	$twitter_v = !empty($xoopsUser) ? $xoopsUser->getVar("user_twitter", "E") : "";
 	$icq_v = !empty($xoopsUser) ? $xoopsUser->getVar("user_icq", "E") : "";
 	$msn_v = !empty($xoopsUser) ? $xoopsUser->getVar("user_msnm", "E") : "";
 	$aim_v = !empty($xoopsUser) ? $xoopsUser->getVar("user_aim", "E") : "";
@@ -45,6 +47,8 @@ if ( empty($HTTP_POST_VARS['submit']) ) {
 	$gender_select = new XoopsFormSelect(_NAR_SELGEN, "userGender",3);
 	$gender_select->addOptionArray(array("3"=>_NAR_SELGEN,"0"=>_NAR_MALE,"1"=>_NAR_FEMALE,"2"=>_NAR_OTHER));
 	$url_text = new XoopsFormText(_NAR_URL, "usersSite", 50, 100, $url_v);
+	$facebook_text = new XoopsFormText(_NAR_FACEBOOK, "usersFACEBOOK", 50, 100, $facebook_v);
+	$twitter_text = new XoopsFormText(_NAR_TWITTER, "usersTWITTER", 50, 100, $twitter_v);
 	$icq_text = new XoopsFormText(_NAR_ICQ, "usersICQ", 50, 100, $icq_v);
 	$msn_text = new XoopsFormText(_NAR_MSN, "usersMSN", 50, 100, $msn_v);
 	$aim_text = new XoopsFormText(_NAR_AIM, "usersAIM", 50, 100, $aim_v);
@@ -60,6 +64,8 @@ if ( empty($HTTP_POST_VARS['submit']) ) {
 	$myguestbook_form->addElement($gender_select,3);
 	$myguestbook_form->addElement($email_text, true);
 	$myguestbook_form->addElement($url_text);
+	$myguestbook_form->addElement($facebook_text);
+	$myguestbook_form->addElement($twitter_text);
 	$myguestbook_form->addElement($icq_text);
 	$myguestbook_form->addElement($msn_text);
 	$myguestbook_form->addElement($aim_text);
@@ -68,6 +74,7 @@ if ( empty($HTTP_POST_VARS['submit']) ) {
 	$myguestbook_form->addElement($location_text);
 	$myguestbook_form->addElement($title_text);
 	$myguestbook_form->addElement($message_textarea, true);
+	$myguestbook_form->addElement(new XoopsFormCaptcha(), true);
 	$myguestbook_form->addElement($submit_button);
 	$myguestbook_form->assign($xoopsTpl);
 	//Assign data to smarty tpl
@@ -82,8 +89,8 @@ if ( empty($HTTP_POST_VARS['submit']) ) {
 	$xoopsTpl->assign('lang_msenter', _NAR_MSENTER);
 	include XOOPS_ROOT_PATH."/footer.php";
 } else {
-	extract($HTTP_POST_VARS);
-	extract($HTTP_POST_VARS);
+	extract($_POST);
+	extract($_POST);	
 	$myts =& MyTextSanitizer::getInstance();
 	$name_text = $myts->stripSlashesGPC($usersName);
 	$title_text = $myts->stripSlashesGPC($usersTitle);
@@ -91,20 +98,28 @@ if ( empty($HTTP_POST_VARS['submit']) ) {
 	$date=time();
 	$email = $myts->stripSlashesGPC($usersEmail);
 	$url_text = $myts->stripSlashesGPC($usersSite);
-	$ip=$GLOBALS['REMOTE_ADDR'];
+	$ip=$_SERVER['REMOTE_ADDR'];
 	$gender_select = $myts->stripSlashesGPC($userGender);
+	$facebook_text = $myts->stripSlashesGPC($usersFACEBOOK);
+	$twitter_text = $myts->stripSlashesGPC($usersTWITTER);
 	$icq_text = $myts->stripSlashesGPC($usersICQ);
 	$aim_text = $myts->stripSlashesGPC($usersAIM);
 	$yim_text = $myts->stripSlashesGPC($usersYIM);
 	$msn_text = $myts->stripSlashesGPC($usersMSN);
 	$location_text = $myts->stripSlashesGPC($usersCompanyLocation);
 	$company_text = $myts->stripSlashesGPC($usersCompanyName);
+	xoops_load('XoopsCaptcha');
+    	$xoopsCaptcha = XoopsCaptcha::getInstance();
+   	if (!$xoopsCaptcha->verify()) {
+	redirect_header('sign.php', 3, $xoopsCaptcha->getMessage());
+	exit;    	
+	}
 //Insert info to database
-	$sqlinsert="INSERT INTO ".$xoopsDB->prefix("myguestbook")." (name,title,message,time,email,url,ip,gender,icq,yim,aim,msn,location,company) VALUES ('".$name_text."','".$title_text."','".$message_textarea."','".$date."','".$email."','".$url_text."','".$ip."','".$gender_select."','".$icq_text."','".$yim_text."','".$aim_text."','".$msn_text."','".$location_text."','".$company_text."')";
+	$sqlinsert="INSERT INTO ".$xoopsDB->prefix("myguestbook")." (name,title,message,time,email,url,ip,gender,facebook,twitter,icq,yim,aim,msn,location,company) VALUES ('".$name_text."','".$title_text."','".$message_textarea."','".$date."','".$email."','".$url_text."','".$ip."','".$gender_select."','".$facebook_text."','".$twitter_text."','".$icq_text."','".$yim_text."','".$aim_text."','".$msn_text."','".$location_text."','".$company_text."')";
 	if ( $xoopsModuleConfig['sendmail'] == 1 ) 
 	{
 	$subject = $xoopsConfig['sitename']." - "._NAR_NEWMESSAGE;
-	$xoopsMailer =& getMailer();
+	$xoopsMailer =& xoops_getMailer();
 	$xoopsMailer->useMail();
 	$xoopsMailer->setToEmails($xoopsConfig['adminmail']);
 	$xoopsMailer->setFromEmail($email);

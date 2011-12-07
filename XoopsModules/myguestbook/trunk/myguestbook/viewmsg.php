@@ -1,6 +1,6 @@
 <?php
 ###############################################################################
-#                  Narga's Guestbook v.1.0 for Xoops 2.x                      #
+#                  Narga's Guestbook v.2.0 for Xoops 2.x                      #
 #             Writen by  Nguyen Dinh Quan (webmaster@narga.tk)                #
 #      [:: Narga Vault :-: The Land Of Dreams ::](http://www.narga.tk)        #
 #   ------------------------------------------------------------------------  #
@@ -21,7 +21,7 @@
 #   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA  #
 #   ------------------------------------------------------------------------  #
 ###############################################################################
-// $Id: index.php,v 1.2.1 Date: 8/27/2004 2:52 PM, Author: Nguyen Dinh Quan Exp 
+// $Id: index.php,v 2.0.1 Date: 8/27/2004 2:52 PM, Author: Nguyen Dinh Quan Exp 
 include './header.php';
 $xoopsOption['template_main'] = 'view_guestbook_messages.html';
 include XOOPS_ROOT_PATH."/header.php";
@@ -30,31 +30,35 @@ function viewmsg($id)
 	{
 	global $xoopsConfig, $xoopsUser, $xoopsDB, $xoopsTheme, $xoopsLogger, $xoopsModule, $xoopsTpl, $xoopsUserIsAdmin;
 	$myts =& MyTextSanitizer::getInstance();
-	$xoopsDB =& Database::getInstance();
+	$xoopsDB =& XoopsDatabaseFactory::getDatabaseConnection();
 	$result = $xoopsDB->query("SELECT * FROM ".$xoopsDB->prefix("myguestbook")." WHERE id= $id");
 	list($id, $name, $title, $message, $note, $time, $email, $url, $ip, $gender, $icq, $yim, $aim, $msn, $location, $company) = $xoopsDB->fetchrow($result);
 //render page
 //	$pagenav = new XoopsPageNav(1);
 //	$pagenav=new XoopsPageNav($nbmessage, $nbmsgbypage, $limite, "limite", "");
 //Assign data to variable
-	$name         = $myts->makeTboxData4Show($name);
-	$title        = $myts->makeTboxData4Show($title);
+	$name         = $myts->htmlSpecialChars($name);
+	$title        = $myts->htmlSpecialChars($title);
 //		$html   = !empty($nohtml) ? 0 :1;
 		$smiley = !empty($nosmiley) ? 0 :1;
 		$xcode  = !empty($noxcode) ? 0 :1;
 	$message      = $myts->sanitizeForDisplay($message,$smiley,$xcode);
 	$note         = $myts->sanitizeForDisplay($note,$smiley,$xcode);
 	$time         = formatTimestamp($time,"d-m-Y");
-	$email        = $myts->makeTboxData4Show($email);
-	$url          = $myts->makeTboxData4Show($url);
-	$ip           = $myts->makeTboxData4Show($ip);
-	$gender       = $myts->makeTboxData4Show($gender);
-	$icq          = $myts->makeTboxData4Show($icq);
-	$yim          = $myts->makeTboxData4Show($yim);
-	$aim          = $myts->makeTboxData4Show($aim);
-	$msn          = $myts->makeTboxData4Show($msn);
-	$location     = $myts->makeTboxData4Show($location);
-	$company      = $myts->makeTboxData4Show($company);
+	$email        = $myts->htmlSpecialChars($email);
+	$url          = $myts->htmlSpecialChars($url);
+	$ip           = $myts->htmlSpecialChars($ip);
+	$gender       = $myts->htmlSpecialChars($gender);
+
+	$facebook          = $myts->htmlSpecialChars($facebook);
+	$twitter          = $myts->htmlSpecialChars($twitter);
+
+	$icq          = $myts->htmlSpecialChars($icq);
+	$yim          = $myts->htmlSpecialChars($yim);
+	$aim          = $myts->htmlSpecialChars($aim);
+	$msn          = $myts->htmlSpecialChars($msn);
+	$location     = $myts->htmlSpecialChars($location);
+	$company      = $myts->htmlSpecialChars($company);
 //Assign data to smarty tpl
 $xoopsTpl->assign("name", $name);
 $xoopsTpl->assign("title", $title);
@@ -81,8 +85,18 @@ if ($location !=""){
 if ($company !=""){
 	$xoopsTpl->assign("company", "$company");
 	}
+
+if ($facebook !=""){
+	$xoopsTpl->assign("facebook", "<a href='http://www.facebook.com/".$facebook."'><img src='./images/facebook.gif' alt='"._NAR_FACEBOOK."' /></a>");
+	}
+if ($twitter !=""){
+	$xoopsTpl->assign("twitter", "<a href=http://twitter.com/#!/".$twitter."'><img src='./images/twitter.gif' alt='"._NAR_TWITTER."' /></a>");
+	}
+
+
+
 if ($icq !=""){
-	$xoopsTpl->assign("icq", "<a href='http://wwp.icq.com/scripts/search.dll?to=".$icq."'><img src='./images/icq.gif' alt='"._NAR_ICQ."' /></a>");
+	$xoopsTpl->assign("icq", "<a href='http://www.icq.com/scripts/search.dll?to=".$icq."'><img src='./images/icq.gif' alt='"._NAR_ICQ."' /></a>");
 	}
 if ($yim !=""){
 	$xoopsTpl->assign("yim", "<a href=http://edit.yahoo.com/config/send_webmesg?.target=".$yim."&.src=pg><img src='./images/yim.gif' alt='"._NAR_YIM."' /></a>");
@@ -98,7 +112,7 @@ if ($note !=""){
 	}
 //Check permission
 	if ($xoopsUser && $xoopsUser->isAdmin($xoopsModule->mid())) 
-		$xoopsTpl->assign("admin_option",  "<p align='right'><img src='images/ip.gif' alt='".$ip."'><a href='admin/index.php?op=editEntry&id=".$id."'>&nbsp;<img src='images/edit.gif' alt='"._NAR_EDIT."' border='0' /></a><a href='admin/index.php?op=delEntry&id=".$id."'>&nbsp;<img src='images/del.gif' alt='"._NAR_DELETEPOST."' border='0' /></a></p>");
+		$xoopsTpl->assign("admin_option",  "<p align='right'><img src='./images/ip.gif' alt='".$ip."'><a href='admin/main.php?op=editEntry&id=".$id."'>&nbsp;<img src='./images/edit.gif' alt='"._NAR_EDIT."' border='0' /></a><a href='admin/main.php?op=delEntry&id=".$id."'>&nbsp;<img src='./images/del.gif' alt='"._NAR_DELETEPOST."' border='0' /></a></p>");
 //Get number of message
 $query = $xoopsDB->query("SELECT COUNT(*) FROM ".$xoopsDB->prefix("myguestbook")." WHERE id>0");
 list($numrows) = $xoopsDB->fetchrow($query);
@@ -115,8 +129,8 @@ $xoopsTpl->assign(array(
 		    "pagenav"                            => $pagenav
 		));
 }
-//$op = isset($HTTP_GET_VARS['op']) ? trim($HTTP_GET_VARS['op']) : '';
-$id = isset($HTTP_GET_VARS['id']) ? intval($HTTP_GET_VARS['id']) : 0;
+//$op = isset($_GET['op']) ? trim($_GET['op']) : '';
+$id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 //switch ($op) {
 //case "viewmsg":
 //	viewmsg($id);

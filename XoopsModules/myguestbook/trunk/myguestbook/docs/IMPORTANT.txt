@@ -1,7 +1,7 @@
-NARGA'S GUESTBOOK MODULES FOR XOOPS PORTAL 2.X
+Narga's Guestbook MODULES FOR XOOPS PORTAL 2.X
 ==============================================
 
-	Myguestbook modules was rewrite after long time from the first release. I haven't enough free time to do it so I decide discontinue develope my project ! Sorry for this bad news. The best things I can do now is support for my work at http://www.nargalab.info/forum as long as I could.
+	Myguestbook modules was rewrite after long time from the first release. I haven't enough free time to do it so I decide discontinue develope my project ! Sorry for this bad news. The best things I can do now is support for my work at http://www.narga.tk as long as I could.
 	I have many ideas to do:
 		>+Insert Search function
 		>+Can turn-off Gender option
