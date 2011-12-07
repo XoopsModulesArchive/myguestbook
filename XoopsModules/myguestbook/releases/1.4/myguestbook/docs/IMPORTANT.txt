@@ -1,0 +1,20 @@
+NARGA'S GUESTBOOK MODULES FOR XOOPS PORTAL 2.X
+==============================================
+
+	Myguestbook modules was rewrite after long time from the first release. I haven't enough free time to do it so I decide discontinue develope my project ! Sorry for this bad news. The best things I can do now is support for my work at http://www.nargalab.info/forum as long as I could.
+	I have many ideas to do:
+		>+Insert Search function
+		>+Can turn-off Gender option
+		>+Send email to admin when new entry signed
+		+ Chose Nation and display as flag
+		>+Local below the Time signing
+		+ Add notification options so people can be notified if there are new messages
+		+ Add the option to moderate messages
+		+ Cutoff option to display # character per msg ( fix the display to large)
+		>+auto fill the infomation if the submitter is member
+		+ Add an RSS feed to show the latest messages
+		+ Check for valid email or disable some email can sign in the guest book
+		+ Can disable or enable all the guestbook's feature
+		>+The Location field included in this version but it not work -_- sorry I will fix it soon when I make the country flag done ^_^
+		The ">" sign means that feature was done, others may be I'll do it in future ! Thanks four your support again !
+^_^

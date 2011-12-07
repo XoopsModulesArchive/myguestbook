@@ -1,0 +1,32 @@
+<table width='98%' align='center' border='0' class'fg2'>
+<tr>
+<td align='center'>
+<center><br /><img src='<{$xoops_url}>/modules/myguestbook/images/logo.gif' alt='[:: Narga Guestbook Logo ::]' border='0' />
+<br /><br />
+<a href='index.php'><{$lang_index}></a></center>
+</td></tr></table><hr><{$lang_info}>
+
+
+
+<{$myguestbookform.javascript}>
+<form name="<{$myguestbookform.name}>" action="<{$myguestbookform.action}>" method="<{$myguestbookform.method}>" <{$myguestbookform.extra}>>
+  <table class="outer" cellspacing="1">
+    <tr>
+    <th colspan="2"><{$myguestbookform.title}></th>
+    </tr>
+    <!-- start of form elements loop -->
+    <{foreach item=element from=$myguestbookform.elements}>
+      <{if $element.hidden != true}>
+      <tr>
+        <td class="head"><{$element.caption}></td>
+        <td class="<{cycle values="even,odd"}>"><{$element.body}></td>
+      </tr>
+      <{else}>
+      <{$element.body}>
+      <{/if}>
+    <{/foreach}>
+    <!-- end of form elements loop -->
+  </table>
+</form>
+
+<table width="100%" cellspacing="0" class="outer"><tr><td class="even"><div align='center'><{$lang_copyright}></div></td></tr></table>

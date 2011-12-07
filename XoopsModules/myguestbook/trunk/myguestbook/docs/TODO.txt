@@ -1,0 +1,14 @@
+>+Insert Search function
++Cut long messages in #character and can display full in small pop-up windows
+>+Can turn-off Gender option
+>+Send email to admin when new entry signed
++Chose Nation and display as flag
+>+Local below the Time signing
++add notification options so people can be notified if there are new messages
++add the option to moderate messages
++cutoff option to display # character per msg ( fix the display to large)
+>+auto fill the infomation if the submitter is member
++Add an RSS feed to show the latest messages
++ Check for valid email or disable some email can sign in the guest book
++ Can disable or enable all the guestbook's feature
+>+ The Location field included in this version but it not work -_- sorry I will fix it soon when I make the country flag done ^_^

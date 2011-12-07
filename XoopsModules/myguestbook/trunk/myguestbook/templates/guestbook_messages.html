@@ -1,0 +1,41 @@
+<table cellspacing='0' cellpadding='0' width='100%' border='1' class='even' >
+<tr valign='top' bgcolor=AABE8F align='center' style='color: #FFFFFF'>
+          <td class='itemHead' width='30%'><b><{$total_entry[entry].name}>&nbsp;&nbsp;<{$total_entry[entry].gender}></a></b></td>
+          <td class='itemHead' width='70%'>
+    <table cellspacing='0' cellpadding='0' width='100%' border='0' style='color: #FFFFFF'>
+<tr>
+<td align='left'><{$total_entry[entry].title}></td>
+</tr></table></td></tr>
+
+<tr>
+<td class='spacer' colspan='2'></td>
+</tr>
+        <tr align='left'>
+          <td class='row1' style='word-space: nowrap;'  width='17%' align='center'><b><{$total_entry[entry].company}></b><br><span style='font-size : 10px;'><{$lang_date}><br /><span style='color: #008000'> <{$total_entry[entry].date}><br><{$total_entry[entry].location}></span></td>
+	  <td width='100%' class='row2' valign='top'>
+<table cellspacing='0' cellpadding='0' width='100%' border='0' >
+	      <tr valign='top' >
+                <td class='row2' colspan='2'>
+<p><br><{$total_entry[entry].message}></p></td></tr>
+<tr valign='bottom'>
+<td class='row2'>
+<table cellspacing='0' cellpadding='0' width='100%' border='0' class='row2'>
+<tr><td><br>
+<{if !$total_entry[entry].note != ""}>
+<hr>
+<{/if}>
+<{$total_entry[entry].email}>&nbsp;<{$total_entry[entry].url}>
+&nbsp;<{$total_entry[entry].icq}>
+&nbsp;<{$total_entry[entry].yim}>
+&nbsp;<{$total_entry[entry].aim}>
+&nbsp;<{$total_entry[entry].msn}>
+&nbsp;
+<{$total_entry[entry].admin_option}>
+</td></tr>
+</table>
+<{if $total_entry[entry].note != ""}>
+<hr><span style='font-size : small;'><i><{$lang_note}>
+<{$total_entry[entry].note}></i></span>
+<{/if}>
+</td></tr></table></td></tr>
+</table><br>
