@@ -1,0 +1,89 @@
+<script type='text/javascript'>
+<!--
+function xoopsFormValidate_guestform(){
+if ( window.document.guestform.name.value == "" ){alert( "<{$lang_nameenter}>" );window.document.guestform.name.focus();return false;}
+if ( window.document.guestform.message.value == "" ){alert( "<{$lang_msenter}>" );window.document.guestform.message.focus();return false;}}
+//--></script>
+
+<table width='98%' align='center' border='0' class'fg2'>
+<tr>
+<td align='center'>
+<center><br /><img src='<{$xoops_url}>/modules/myguestbook/images/logo.gif' alt='[:: Narga Guestbook Logo ::]' border='0' />
+<br /><br />
+<a href='index.php'><{$lang_index}></a></center>
+</td></tr></table><hr><{$lang_info}>
+<table width="100%" cellspacing="1" cellpadding="4" border="0">
+  <tr>
+    <td><br />
+<form action="sign.php" method="post" name='guestform' id='guestform' onsubmit='return xoopsFormValidate_guestform();'>
+        <table class ="outer" width="80%">
+          <tr> 
+            <td class="itemHead" align="left" nowrap colspan="2"><b><{$lang_writing}></b> 
+            </td>
+          </tr>
+          <tr> 
+            <td class="head" align="left" nowrap><b><{$lang_name}></b></td>
+            <td class="even"> 
+              <input type="text" name="name" size="50" maxlength="100" />
+            </td>
+          </tr>
+          <tr> 
+            <td class="head" align="left" nowrap><b><{$lang_url}></b></td>
+            <td class="odd" > 
+              <input type="text" name="url" size="50" maxlength="250" value="" />
+            </td>
+          </tr>
+          <tr> 
+            <td class="head" align="left" nowrap><b><{$lang_gender}></b></td>
+            <td class="even"><{$gender_form}></td>
+          </tr>
+          <tr> 
+            <td class="head" align="left"><b><{$lang_email}></b></td>
+            <td class="odd" > 
+              <input type="text" name="email" size="50" maxlength="100" value="<{$file.homepage}>">
+            </td>
+          </tr>
+          <tr> 
+            <td class="head" align="left"><b><{$lang_icq}></b></td>
+            <td class="even"> 
+              <input type="text" name="icq" size="10" maxlength="20" value="<{$file.version}>">
+            </td>
+          </tr>
+          <tr> 
+            <td class="head" align="left"><b><{$lang_msn}></b></td>
+            <td class="odd"> 
+              <input type="text" name="msn" size="10" maxlength="20" value="<{$file.version}>">
+            </td>
+          </tr>
+          <tr> 
+            <td class="head" align="left"><b><{$lang_aim}></b></td>
+            <td class="even"> 
+              <input type="text" name="aim" size="10" maxlength="20" value="<{$file.version}>">
+            </td>
+          </tr>
+          <tr> 
+            <td class="head" align="left"><b><{$lang_yim}></b></td>
+            <td class="odd"> 
+              <input type="text" name="yim" size="10" maxlength="20" value="<{$file.size}>">
+             </td>
+          </tr>
+          <tr> 
+            <td class="head" align="left"><b><{$lang_title}></b></td>
+            <td class="even"> 
+              <input type="text" name="title" size="50" maxlength="50" value="<{$file.plataform}>">
+            </td>
+          </tr>
+          <tr> 
+            <td class="head" align="left" valign="top" nowrap><b><{$lang_message}></b></td>
+            <td class="odd"><{$xoops_codes}><{$xoops_smilies}></td>
+          </tr>
+        </table>
+      <br />
+      <div style="text-align: center;"><input type="submit" name="submit" class="button" value="<{$lang_submit}>" />&nbsp;<input type="button" value="<{$lang_cancel}>" onclick="javascript:history.go(-1)" /></div>
+    </form>
+  </td>
+</tr>
+</table>
+
+
+<table width="100%" cellspacing="0" class="outer"><tr><td class="even"><div align='center'><{$lang_copyright}></div></td></tr></table>

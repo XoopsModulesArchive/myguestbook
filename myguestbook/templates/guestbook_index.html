@@ -1,0 +1,34 @@
+<table width='98%' align='center' border='0' class'fg2'>
+<tr>
+<td align='center'>
+<center><br /><img src='<{$xoops_url}>/modules/myguestbook/images/logo.gif' alt='[:: Narga Guestbook ::]' border='0' />
+<br /><br />
+<a href='sign.php'><{$lang_sign}></a><br /><br /></center>
+<{$lang_there_is}></td></tr></table>
+<br /><hr><br>
+<table cellspacing='0' border='0' width='98%'>
+  <tr>
+    <td width='100%' align='center'><{$pagenav}></td>
+  </tr>
+</table>
+
+<{section name=entry loop=$total_entry}>
+  <{include file="db:guestbook_messages.html" entry=$total_entry[i]}>
+<{sectionelse}>
+<table>
+  <tr>
+    <td class='even' valign='middle' align='center' colspan='3'><{$lang_no_partners}></td>
+  </tr>
+</table>
+<{/section}>
+
+
+
+<table cellspacing='0' border='0' width='98%'>
+  <tr>
+    <td width='100%' align='center'><{$pagenav}></td>
+  </tr>
+</table>
+
+
+<br /><hr><br><table width="100%" cellspacing="0" class="outer"><tr><td class="even"><div align='center'><{$lang_copyright}></div></td></tr></table>
