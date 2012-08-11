@@ -56,7 +56,7 @@ define("_NAR_MODIFSAVE","Modifications saved");
 define("_NAR_PREVIEW","Preview");
 define("_NAR_EDIT","Edit");
 define("_NAR_NOTE","Webmaster's note:");
-define('_NAR_NOENTRY', 'We not have any messages in our guestbook, do you want to sign in our guestbook !');
+define('_NAR_NOENTRY','We not have any messages in our guestbook, do you want to sign in our guestbook !');
 define("_NAR_DATE","Sign on");
 define("_NAR_NAMEENTER","Please fill the name field !");
 define("_NAR_MSENTER","Please fill the message field !");
