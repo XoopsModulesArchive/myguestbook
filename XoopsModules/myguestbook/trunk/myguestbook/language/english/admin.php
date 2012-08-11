@@ -37,7 +37,7 @@ define("_AM_NAR_SEND","Send");
 define("_AM_NAR_EDIT","Edit");
 define("_AM_NAR_DEL","Delete");
 define("_AM_NAR_BESUREDATE","Do you want to delete this message");
-define('_AM_NAR_NOTUPDATED', 'Can not update database !');
+define('_AM_NAR_NOTUPDATED','Can not update database !');
 define("_AM_NAR_EDITENTRY","Edit message");
 define("_AM_NAR_MODIFSAVE","Your action has been saved");
 define("_AM_NAR_NOTE","Webmaster's note:");
